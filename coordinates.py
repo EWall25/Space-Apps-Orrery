@@ -1,11 +1,24 @@
-#Heliocentric Coordinates:
+import math
 import numpy as np
-from planetary_elements import a, e
-E = 0
-Xcent = a * (np.cos(np.deg2rad(E))-e)
-Ycent = a * np.sqrt(1-(e**2))*np.sin(np.deg2rad(E))
-Zcent = 0
-print(Xcent)
-print(Ycent)
-print(Zcent)
-Xecl=((np.cos(np.deg2rad(ω)))*(np.cos(np.deg2rad(Ω))))-()
+
+from kepler_equation import eccentric_anomaly, modulus
+from planetary_elements import a, e, ω, Ω, I
+
+# M = math.radians(modulus(355.43))  # Mean anomaly in radians
+M = math.radians(355.43)  # Mean anomaly in radians
+E = eccentric_anomaly(M, e, a)  # Eccentric anomaly in radians
+
+# Orbital plane reference:
+x_orbit = a * (math.cos(E) - e)
+y_orbit = a * math.sqrt(1 - e**2) * math.sin(E)
+z_orbit = 0
+
+print(x_orbit, y_orbit, z_orbit)
+
+# J2000 ecliptic plane reference:
+# x_ecl = ((np.cos(np.deg2rad(ω)))*(np.cos(np.deg2rad(Ω))))-()
+x_ecl=((((np.cos(np.deg2rad(ω)))*(np.cos(np.deg2rad(Ω))))-(((np.sin(np.deg2rad(ω))))*(np.sin(np.deg2rad(Ω)))*(np.cos(np.deg2rad(I))))*x_orbit) - ((((np.sin(np.deg2rad(ω))))*(np.cos(np.deg2rad(Ω)))+((np.cos(np.deg2rad(ω)))*(np.sin(np.deg2rad(Ω)))*(np.cos(np.deg2rad(I)))))*y_orbit))
+y_ecl=(((np.cos(np.deg2rad(ω)))*(np.sin(np.deg2rad(Ω))))-(((np.sin(np.deg2rad(ω))))*(np.cos(np.deg2rad(Ω)))*(np.cos(np.deg2rad(I))))*x_orbit - ((((np.sin(np.deg2rad(ω))))*(np.sin(np.deg2rad(Ω)))-((np.cos(np.deg2rad(ω)))*(np.cos(np.deg2rad(Ω)))*(np.cos(np.deg2rad(I)))))*y_orbit))
+z_ecl=((((((np.sin(np.deg2rad(ω)))))*(np.sin(np.deg2rad(I))))*x_orbit + (((np.cos(np.deg2rad(ω)))*(np.sin(np.deg2rad(I))))*y_orbit)))
+
+print(x_ecl, y_ecl, z_ecl)
