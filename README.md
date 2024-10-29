@@ -3,8 +3,11 @@ This repository contains the backend code for our team's submission to the 2024 
 
 ## Team Members
 **Ethan Wall** - Research & Programming
+
 **Oliver Hund** - Research & Programming
+
 **Michael Galiani** - Unity Scene Design
+
 **Hendrix Bromberg** - Project Management
 
 ## AI Disclaimer
